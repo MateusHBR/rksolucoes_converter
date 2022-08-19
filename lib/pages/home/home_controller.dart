@@ -45,11 +45,13 @@ class HomeController extends GetxController {
 
   Future<void> convertFile() async {
     if (_oldFile.value == null) return;
-    final splitted_file_path = _oldFile.value!.path.split(getPlatformDivider())
-      ..removeLast()
-      ..add('rk_convert_result.txt');
+
+    final splitted_file_path = _oldFile.value!.path.split(getPlatformDivider());
+    final fileName =
+        splitted_file_path.removeLast().split('.').join('_result.');
+    splitted_file_path.add(fileName);
     final destination = splitted_file_path.join(getPlatformDivider());
-    print(destination);
+
     final newFile = File(destination);
     isLoading.value = true;
 
@@ -63,7 +65,7 @@ class HomeController extends GetxController {
           '$item\n'
               .replaceAll(" ", "")
               .padLeft(_numberOfColumns.value + 1, "0"),
-          mode: FileMode.write,
+          mode: FileMode.append,
         );
       }
       Get.back();
