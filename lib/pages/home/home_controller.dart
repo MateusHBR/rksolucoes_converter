@@ -1,18 +1,18 @@
-import 'package:flutter/rendering.dart';
-import 'package:get/get.dart';
 import 'dart:io';
-
+import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart' as path;
+import 'package:flutter/rendering.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:rk_solucoes/models/application_colors.dart';
 
 class HomeController extends GetxController {
-  String _currentPath;
-  File _oldFile;
-  File _newFile;
-
+  final _oldFile = Rx<File?>(null);
   final _numberOfColumns = Rx<int>(13);
   final isLoading = Rx<bool>(false);
 
   String get numberOfColumns => _numberOfColumns.value.toString();
+
+  String? get selectedFilePath => _oldFile.value?.path;
 
   void addColumns() => _numberOfColumns.value += 1;
 
@@ -22,42 +22,73 @@ class HomeController extends GetxController {
     }
   }
 
-  @override
-  void onInit() {
-    _currentPath = Directory.current.path;
-    _oldFile = File("$_currentPath\\arquivo_que_será_convertido.txt");
-    _newFile = File("$_currentPath\\resultado.txt");
-    super.onInit();
+  Future<File?> pickFile() async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.any,
+      allowMultiple: false,
+      allowCompression: false,
+      allowedExtensions: ['txt'],
+      dialogTitle: 'Selecione o arquivo que será convertido',
+    );
+
+    if (result == null) {
+      showNoFileSelectedSnackbar();
+      return null;
+    }
+
+    _oldFile.value = File(result.files.first.path!);
   }
 
+  void clearSelectedFile() => _oldFile.value = null;
+
+  String getPlatformDivider() => Platform.isWindows ? '\\' : '/';
+
   Future<void> convertFile() async {
+    if (_oldFile.value == null) return;
+    final splitted_file_path = _oldFile.value!.path.split(getPlatformDivider())
+      ..removeLast()
+      ..add('rk_convert_result.txt');
+    final destination = splitted_file_path.join(getPlatformDivider());
+    print(destination);
+    final newFile = File(destination);
     isLoading.value = true;
 
-    List listOfLinesInFile;
     try {
-      print(_currentPath);
-      listOfLinesInFile = _oldFile.readAsLinesSync();
+      print(_oldFile.value!.path);
 
-      await Future(() {
-        for (var item in listOfLinesInFile) {
-          _newFile.writeAsStringSync(
-            '$item\n'
-                .replaceAll(" ", "")
-                .padLeft(_numberOfColumns.value + 1, "0"),
-            mode: FileMode.append,
-          );
-        }
+      final listOfLinesInFile = await _oldFile.value!.readAsLines();
 
-        Get.back();
-      });
+      for (var item in listOfLinesInFile) {
+        await newFile.writeAsString(
+          '$item\n'
+              .replaceAll(" ", "")
+              .padLeft(_numberOfColumns.value + 1, "0"),
+          mode: FileMode.write,
+        );
+      }
+      Get.back();
 
       showSnackSuccessBar();
-    } catch (_) {
+    } catch (e) {
+      print(e);
       Get.back();
       showErrorSnackBar();
     } finally {
       isLoading.value = false;
     }
+  }
+
+  void showNoFileSelectedSnackbar() {
+    Get.showSnackbar(
+      GetBar(
+        snackPosition: SnackPosition.TOP,
+        title: 'Informativo!',
+        message: 'Nenhum arquivo selecionado!',
+        duration: Duration(seconds: 4),
+        borderRadius: 20,
+        margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+      ),
+    );
   }
 
   void showSnackSuccessBar() {

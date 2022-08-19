@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -11,8 +12,8 @@ class HomePage extends StatelessWidget {
   final HomeController _controller;
 
   const HomePage({
-    Key key,
-    @required HomeController controller,
+    Key? key,
+    required HomeController controller,
   })  : _controller = controller,
         super(key: key);
 
@@ -33,48 +34,98 @@ class HomePage extends StatelessWidget {
       body: Container(
         width: size.width,
         height: size.height,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              'Número de colunas desejadas:',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  color: Colors.black,
-                  icon: Icon(Icons.remove),
-                  onPressed: _controller.removeColumns,
-                ),
-                SizedBox(width: 20),
-                Obx(
-                  () => Text(
-                    _controller.numberOfColumns,
+        child: Obx(
+          () {
+            return Visibility(
+              visible: _controller.selectedFilePath != null,
+              replacement: Center(
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all(
+                      EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                    ),
+                  ),
+                  child: Text(
+                    'Selecionar arquivo',
                     style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
                       fontSize: 18,
                     ),
                   ),
+                  onPressed: () async {
+                    await _controller.pickFile();
+                  },
                 ),
-                SizedBox(width: 20),
-                IconButton(
-                  color: Colors.black,
-                  icon: Icon(Icons.add),
-                  onPressed: _controller.addColumns,
-                ),
-              ],
+              ),
+              child: _SelectedFilePage(controller: _controller),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class _SelectedFilePage extends StatelessWidget {
+  const _SelectedFilePage({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  final HomeController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          'Número de colunas desejadas:',
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        SizedBox(height: 20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton(
+              color: Colors.black,
+              icon: Icon(Icons.remove),
+              onPressed: controller.removeColumns,
             ),
-            SizedBox(height: 80),
+            SizedBox(width: 20),
+            Obx(
+              () => Text(
+                controller.numberOfColumns,
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+            ),
+            SizedBox(width: 20),
+            IconButton(
+              color: Colors.black,
+              icon: Icon(Icons.add),
+              onPressed: controller.addColumns,
+            ),
+          ],
+        ),
+        const SizedBox(height: 80),
+        Obx(() => Text("Arquivo selecionado: ${controller.selectedFilePath}")),
+        const SizedBox(height: 80),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _cancelButton(),
+            const SizedBox(width: 20),
             _convertButton(),
           ],
         ),
-      ),
+      ],
     );
   }
 
@@ -95,8 +146,28 @@ class HomePage extends StatelessWidget {
       ),
       onPressed: () async {
         _showDialog();
-        await _controller.convertFile();
+        await controller.convertFile();
       },
+    );
+  }
+
+  Widget _cancelButton() {
+    return ElevatedButton(
+      style: ButtonStyle(
+        padding: MaterialStateProperty.all(
+          EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+        ),
+        backgroundColor: MaterialStateProperty.all(Colors.red),
+      ),
+      child: Text(
+        'Cancelar',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+          fontSize: 18,
+        ),
+      ),
+      onPressed: controller.clearSelectedFile,
     );
   }
 

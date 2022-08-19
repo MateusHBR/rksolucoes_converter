@@ -16,9 +16,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       initialBinding: ApplicationBindings(),
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.grey,
-      ),
+      theme: ThemeData(primarySwatch: Colors.grey),
       home: SplashScreen(),
       getPages: [
         GetPage(
