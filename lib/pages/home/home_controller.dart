@@ -56,17 +56,17 @@ class HomeController extends GetxController {
     isLoading.value = true;
 
     try {
-      print(_oldFile.value!.path);
-
       final listOfLinesInFile = await _oldFile.value!.readAsLines();
 
       for (var item in listOfLinesInFile) {
-        await newFile.writeAsString(
-          '$item\n'
-              .replaceAll(" ", "")
-              .padLeft(_numberOfColumns.value + 1, "0"),
-          mode: FileMode.append,
-        );
+        if (item.trim().isNotEmpty) {
+          await newFile.writeAsString(
+            '$item\n'
+                .replaceAll(" ", "")
+                .padLeft(_numberOfColumns.value + 1, "0"),
+            mode: FileMode.append,
+          );
+        }
       }
       Get.back();
 

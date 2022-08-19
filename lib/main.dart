@@ -10,13 +10,18 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await windowManager.ensureInitialized();
 
+  final appSize = Size(800, 600);
   WindowOptions windowOptions = WindowOptions(
-    size: Size(800, 600),
+    size: appSize,
+    minimumSize: appSize,
+    maximumSize: appSize,
     center: true,
     backgroundColor: Colors.transparent,
     skipTaskbar: false,
-    titleBarStyle: TitleBarStyle.hidden,
+    titleBarStyle: TitleBarStyle.normal,
+    title: 'RK Soluções',
   );
+
   windowManager.waitUntilReadyToShow(windowOptions, () async {
     await windowManager.show();
     await windowManager.focus();
