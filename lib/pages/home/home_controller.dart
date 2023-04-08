@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/rendering.dart';
 import 'package:file_picker/file_picker.dart';
@@ -24,7 +25,7 @@ class HomeController extends GetxController {
     }
   }
 
-  Future<File?> pickFile() async {
+  Future<void> pickFile() async {
     final result = await FilePicker.platform.pickFiles(
       type: FileType.any,
       allowMultiple: false,
@@ -73,11 +74,12 @@ class HomeController extends GetxController {
       await ffi.api.formatFile(
         inputFile: _oldFile.value!.path,
         outputFile: newFile.path,
+        numberOfColumns: _numberOfColumns.value,
       );
 
       Get.back();
 
-      showSnackSuccessBar();
+      showResultDialog(newFile.path);
     } catch (e) {
       print(e);
       Get.back();
@@ -100,16 +102,22 @@ class HomeController extends GetxController {
     );
   }
 
-  void showSnackSuccessBar() {
-    Get.showSnackbar(
-      GetBar(
-        snackPosition: SnackPosition.TOP,
-        title: 'Sucesso!',
-        message: 'Arquivo convertido com sucesso!',
-        backgroundColor: ApplicationColors.green,
-        duration: Duration(seconds: 4),
-        borderRadius: 20,
-        margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+  void showResultDialog(String resultado) {
+    Get.dialog(
+      AlertDialog(
+        title: Text("Sucesso!"),
+        content: Column(
+          children: [
+            Text("O arquivo foi convertido com sucesso!"),
+            Text("Arquivo resultado: $resultado"),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: Get.back,
+            child: Text("OK"),
+          ),
+        ],
       ),
     );
   }

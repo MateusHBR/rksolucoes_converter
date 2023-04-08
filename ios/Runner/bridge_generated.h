@@ -28,7 +28,8 @@ intptr_t init_frb_dart_api_dl(void *obj);
 
 void wire_format_file(int64_t port_,
                       struct wire_uint_8_list *input_file,
-                      struct wire_uint_8_list *output_file);
+                      struct wire_uint_8_list *output_file,
+                      uintptr_t number_of_columns);
 
 struct wire_uint_8_list *new_uint_8_list_0(int32_t len);
 
