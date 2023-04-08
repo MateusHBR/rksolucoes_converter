@@ -3,17 +3,57 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
+		276F6CD529E1DEE500E6A6A9 /* librk_parser_static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 276F6CCD29E1DE5400E6A6A9 /* librk_parser_static.a */; };
+		276F6CD629E1DEEA00E6A6A9 /* rk_parser.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 276F6CCB29E1DE5400E6A6A9 /* rk_parser.dylib */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		276F6CCA29E1DE5400E6A6A9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 276F6CC429E1DE5400E6A6A9 /* rk_parser.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CA6033D98D789B9F9C68AA06;
+			remoteInfo = "rk_parser-cdylib";
+		};
+		276F6CCC29E1DE5400E6A6A9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 276F6CC429E1DE5400E6A6A9 /* rk_parser.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CA601AEB196174BBCB33517D;
+			remoteInfo = "rk_parser-staticlib";
+		};
+		276F6CCE29E1DE5400E6A6A9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 276F6CC429E1DE5400E6A6A9 /* rk_parser.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CA606CC03A0D36842096537A;
+			remoteInfo = "rk_parser-bin";
+		};
+		276F6CD029E1DEB700E6A6A9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 276F6CC429E1DE5400E6A6A9 /* rk_parser.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CA6033D98D7868B33EBC9911;
+			remoteInfo = "rk_parser-cdylib";
+		};
+		276F6CD229E1DEBC00E6A6A9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 276F6CC429E1DE5400E6A6A9 /* rk_parser.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CA601AEB1961AB481E24A793;
+			remoteInfo = "rk_parser-staticlib";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		9705A1C41CF9048500538489 /* Embed Frameworks */ = {
@@ -31,6 +71,7 @@
 /* Begin PBXFileReference section */
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
+		276F6CC429E1DE5400E6A6A9 /* rk_parser.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = rk_parser.xcodeproj; path = ../../packages/rk_parser.xcodeproj; sourceTree = "<group>"; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
 		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,12 +90,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				276F6CD629E1DEEA00E6A6A9 /* rk_parser.dylib in Frameworks */,
+				276F6CD529E1DEE500E6A6A9 /* librk_parser_static.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		276F6CC529E1DE5400E6A6A9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				276F6CCB29E1DE5400E6A6A9 /* rk_parser.dylib */,
+				276F6CCD29E1DE5400E6A6A9 /* librk_parser_static.a */,
+				276F6CCF29E1DE5400E6A6A9 /* rk_parser */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		276F6CD429E1DEE500E6A6A9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9740EEB11CF90186004384FC /* Flutter */ = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +132,7 @@
 				9740EEB11CF90186004384FC /* Flutter */,
 				97C146F01CF9000F007C117D /* Runner */,
 				97C146EF1CF9000F007C117D /* Products */,
+				276F6CD429E1DEE500E6A6A9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +147,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				276F6CC429E1DE5400E6A6A9 /* rk_parser.xcodeproj */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
@@ -115,6 +177,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				276F6CD329E1DEBC00E6A6A9 /* PBXTargetDependency */,
+				276F6CD129E1DEB700E6A6A9 /* PBXTargetDependency */,
 			);
 			name = Runner;
 			productName = Runner;
@@ -147,12 +211,42 @@
 			mainGroup = 97C146E51CF9000F007C117D;
 			productRefGroup = 97C146EF1CF9000F007C117D /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 276F6CC529E1DE5400E6A6A9 /* Products */;
+					ProjectRef = 276F6CC429E1DE5400E6A6A9 /* rk_parser.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				97C146ED1CF9000F007C117D /* Runner */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		276F6CCB29E1DE5400E6A6A9 /* rk_parser.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = rk_parser.dylib;
+			remoteRef = 276F6CCA29E1DE5400E6A6A9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		276F6CCD29E1DE5400E6A6A9 /* librk_parser_static.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = librk_parser_static.a;
+			remoteRef = 276F6CCC29E1DE5400E6A6A9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		276F6CCF29E1DE5400E6A6A9 /* rk_parser */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = rk_parser;
+			remoteRef = 276F6CCE29E1DE5400E6A6A9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		97C146EC1CF9000F007C117D /* Resources */ = {
@@ -181,7 +275,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed_and_thin";
+			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed_and_thin\n";
 		};
 		9740EEB61CF901F6004384FC /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -210,6 +304,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		276F6CD129E1DEB700E6A6A9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "rk_parser-cdylib";
+			targetProxy = 276F6CD029E1DEB700E6A6A9 /* PBXContainerItemProxy */;
+		};
+		276F6CD329E1DEBC00E6A6A9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "rk_parser-staticlib";
+			targetProxy = 276F6CD229E1DEBC00E6A6A9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		97C146FA1CF9000F007C117D /* Main.storyboard */ = {
@@ -290,9 +397,13 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.cubos.rkSolucoes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_STYLE = "non-global";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -399,7 +510,8 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -414,9 +526,13 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.cubos.rkSolucoes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_STYLE = "non-global";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -433,9 +549,13 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.cubos.rkSolucoes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_STYLE = "non-global";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

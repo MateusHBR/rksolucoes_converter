@@ -1,9 +1,11 @@
 import 'dart:io';
 import 'package:get/get.dart';
-import 'package:path_provider/path_provider.dart' as path;
 import 'package:flutter/rendering.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:rk_solucoes/ffi.dart' as ffi;
 import 'package:rk_solucoes/models/application_colors.dart';
+
+const String _kMacOSDestination = "";
 
 class HomeController extends GetxController {
   final _oldFile = Rx<File?>(null);
@@ -50,24 +52,29 @@ class HomeController extends GetxController {
     final fileName =
         splitted_file_path.removeLast().split('.').join('_result.');
     splitted_file_path.add(fileName);
-    final destination = splitted_file_path.join(getPlatformDivider());
+
+    late final String destination;
+    if (Platform.isMacOS) {
+      if (_kMacOSDestination.isEmpty) {
+        print("Setup _kMacOSDestination constant to debug");
+        showErrorSnackBar();
+        return;
+      }
+
+      destination = _kMacOSDestination;
+    } else {
+      destination = splitted_file_path.join(getPlatformDivider());
+    }
 
     final newFile = File(destination);
     isLoading.value = true;
 
     try {
-      final listOfLinesInFile = await _oldFile.value!.readAsLines();
+      await ffi.api.formatFile(
+        inputFile: _oldFile.value!.path,
+        outputFile: newFile.path,
+      );
 
-      for (var item in listOfLinesInFile) {
-        if (item.trim().isNotEmpty) {
-          await newFile.writeAsString(
-            '$item\n'
-                .replaceAll(" ", "")
-                .padLeft(_numberOfColumns.value + 1, "0"),
-            mode: FileMode.append,
-          );
-        }
-      }
       Get.back();
 
       showSnackSuccessBar();
